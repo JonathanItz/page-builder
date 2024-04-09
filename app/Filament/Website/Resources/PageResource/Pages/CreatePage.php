@@ -2,6 +2,7 @@
 
 namespace App\Filament\Website\Resources\PageResource\Pages;
 
+use App\Models\Page;
 use Filament\Actions;
 use Illuminate\Support\Str;
 use Filament\Notifications\Notification;
@@ -16,9 +17,21 @@ class CreatePage extends CreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         $data['user_id'] = auth()->id();
-        $data['random_id'] = microtime(true);
+        $data['random_id'] = substr(strrev(microtime(true) * 10000), 0, 5);
         $data['slug'] = Str::slug($data['title']);
-    
+
+        if($data['content']) {
+            foreach($data['content'] as $key => $content) {
+                if($content['type'] === 'form' && array_key_exists($key, $data['content'])) {
+                    if(! array_key_exists('id', $data['content'][$key]['data']) ||
+                    array_key_exists('id', $data['content'][$key]['data']) &&
+                    (! isset($data['content'][$key]['data']['id']) || $data['content'][$key]['data']['id'] === null)) {
+                        $data['content'][$key]['data']['id'] = rand(100000, 999999);
+                    }
+                }
+            }
+        }
+
         return $data;
     }
 
