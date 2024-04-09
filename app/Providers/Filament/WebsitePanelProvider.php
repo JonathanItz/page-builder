@@ -7,6 +7,7 @@ use Filament\Panel;
 use Filament\Widgets;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Illuminate\Support\HtmlString;
 use Filament\Navigation\NavigationItem;
 use Filament\Http\Middleware\Authenticate;
 use Illuminate\Session\Middleware\StartSession;
@@ -27,6 +28,14 @@ class WebsitePanelProvider extends PanelProvider
         return $panel
             ->id('website')
             ->path('builder')
+            ->brandName('Igloo Pages')
+            ->brandName(function() {
+                return new HtmlString('
+                    <div class="flex gap-3 items-center">
+                        <img class="w-8 h-8 inline" src="'.asset('assets/images/logo.svg').'" /> Igloo Pages
+                    </div>
+                ');
+            })
             // ->login()
             // ->registration()
             // ->passwordReset()
@@ -70,6 +79,6 @@ class WebsitePanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->viteTheme('resources/css/filament/website/theme.css')
-            ->darkMode(false);;
+            ->darkMode(false);
     }
 }

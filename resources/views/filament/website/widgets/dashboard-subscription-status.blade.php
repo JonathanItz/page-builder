@@ -17,7 +17,7 @@
                 @endif
 
                 <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                    Manage your subscription <b><a href="/billing">here</a></b>
+                    <a href="/billing">Manage your subscription <span class="underline">here</span></a>
                 </p>
             </div>
         </div>
