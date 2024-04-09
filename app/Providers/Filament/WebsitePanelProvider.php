@@ -18,6 +18,7 @@ use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use App\Filament\Website\Widgets\DashboardSubscriptionStatus;
 
 class WebsitePanelProvider extends PanelProvider
 {
@@ -51,6 +52,7 @@ class WebsitePanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Website/Widgets'), for: 'App\\Filament\\Website\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
+                DashboardSubscriptionStatus::class,
                 // Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([

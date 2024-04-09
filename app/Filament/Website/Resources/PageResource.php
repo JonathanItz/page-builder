@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Website\Resources\PageResource\Pages;
 use Illuminate\Database\Eloquent\Builder as LaravelBuilder;
 use App\Filament\Website\Resources\PageResource\RelationManagers;
+use Filament\Tables\Actions\Action;
 
 class PageResource extends Resource
 {
@@ -213,6 +214,10 @@ class PageResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Action::make('View')
+                    ->url(fn (Page $record): string => route('page', [$record['random_id'], $record['slug']]))
+                    ->openUrlInNewTab()
+                    ->icon('heroicon-o-arrow-top-right-on-square')
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -247,5 +252,16 @@ class PageResource extends Resource
     public static function getEloquentQuery(): LaravelBuilder
     {
         return parent::getEloquentQuery()->where('user_id', auth()->user()->id);
+    }
+
+    public static function canAccess(): bool
+    {
+        $hasAccess = hasAccess();
+
+        if(! $hasAccess) {
+            redirect("/billing?message=You don't have access. Start your subscription to create your pages.");
+        }
+
+        return true;
     }
 }

@@ -46,8 +46,26 @@ function getDaysLeftInTrial(): bool|int {
     $daysLeft = 0;
 
     if($user->onTrial()) {
-        $daysLeft = ceil(now()->midDay()->diffInDays($user->trial_ends_at, true));
+        $daysLeft = ceil(now()->diffInDays($user->trial_ends_at, true));
         return $daysLeft;
+    }
+
+    return false;
+}
+
+/*
+|--------------------------------------------------------
+| Days left in trial
+|--------------------------------------------------------
+| Returns an integer if there are days left.
+| Returns false if there is no trial left.
+|
+*/
+function hasAccess(): bool {
+    $user = auth()->user();
+
+    if($user->onTrial() || $user->subscribed()) {
+        return true;
     }
 
     return false;
