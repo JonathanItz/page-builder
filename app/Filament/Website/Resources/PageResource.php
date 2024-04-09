@@ -231,15 +231,7 @@ class PageResource extends Resource
 
     public static function canCreate(): bool
     {
-        $user = auth()->user();
-        $userId = $user->id;
-        $pagesCount = Page::where('user_id', $userId)->count();
-
-        if($pagesCount >= 5) {
-            return false;
-        }
-
-        return true;
+        return ! userHasReachedMaxPages();
     }
 
     public static function getPages(): array

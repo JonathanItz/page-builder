@@ -43,7 +43,7 @@ new #[Layout('layouts.guest')] class extends Component
 
         $page->save();
 
-        $this->redirect(url('/builder'), navigate: true);
+        $this->redirect(url('/builder'));
     }
 }; ?>
 

@@ -56,4 +56,8 @@ class CreatePage extends CreateRecord
         //     $this->halt();
         // // }
     }
+
+    static function canCreateAnother(): bool {
+        return ! userHasReachedMaxPages(4);
+    }
 }

@@ -15,15 +15,21 @@ class ListPages extends ListRecords
 
     public function getSubheading(): ?string
     {
-        $user = auth()->user();
-        $userId = $user->id;
-        $pagesCount = Page::where('user_id', $userId)->count();
+        $maxPages = userHasReachedMaxPages();
 
-        if($pagesCount >= 5) {
-            return new HtmlString("You've reached the maximum number of pages.");
+        $subheading = '';
+
+        if($maxPages) {
+            $subheading = "You've reached the maximum number of pages. ";
         }
 
-        return null;
+        $daysLeft = getDaysLeftInTrial();
+
+        if($daysLeft !== false) {
+            $subheading = $subheading . "You have $daysLeft days left in your trial.";
+        }
+
+        return $subheading;
     }
 
     protected function getHeaderActions(): array
