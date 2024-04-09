@@ -31,6 +31,8 @@ class PageResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationGroup = 'Pages';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -141,6 +143,7 @@ class PageResource extends Resource
                                                         ->label('Image')
                                                         ->image()
                                                         ->required()
+                                                        ->imageEditor()
                                                         ->maxSize(3000),
                                                     TextInput::make('alt')
                                                         ->label('Alt text')
@@ -162,6 +165,12 @@ class PageResource extends Resource
                         Section::make([
                             Section::make('Status')
                                 ->schema([
+                                    Placeholder::make('')
+                                        ->content(function($state) {
+                                            $url = route('page', [$state['random_id'], $state['slug']]);
+                                            // $url = url('/') . '/builder/submissions?tableSearch=' . $formId;
+                                            return new HtmlString('<a href="'.$url.'" target="_blank">View Page <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="inline w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg></a>');
+                                        }),
                                     Select::make('status')
                                         ->options([
                                             'draft' => 'Draft',
@@ -169,7 +178,7 @@ class PageResource extends Resource
                                             'published' => 'Published',
                                         ])
                                         ->default('draft')
-                                        ->selectablePlaceholder(false)
+                                        ->selectablePlaceholder(false),
                                 ])
                                 ->compact()
                         ])
@@ -214,6 +223,7 @@ class PageResource extends Resource
             'index' => Pages\ListPages::route('/'),
             'create' => Pages\CreatePage::route('/create'),
             'edit' => Pages\EditPage::route('/{record}/edit'),
+            'settings' => Pages\Settings::route('/settings'),
         ];
     }
 

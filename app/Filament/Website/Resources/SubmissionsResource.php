@@ -22,6 +22,8 @@ class SubmissionsResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-pencil';
 
+    protected static ?string $navigationGroup = 'Pages';
+
     public static function form(Form $form): Form
     {
         return $form

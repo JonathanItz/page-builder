@@ -1,4 +1,4 @@
-<form class="pb-14 pt-4" wire:submit="submit">
+<form class="pt-4" wire:submit="submit">
     @foreach ($formFields as $fieldType)
         @if (in_array($fieldType, $acceptedFields))
             <div class="flex gap-6 items-end mt-8 first:mt-0" wire:key="{{ rand() }}">
@@ -42,7 +42,7 @@
                         ring-gray-300
                         @enderror
                         "
-                        {{-- required --}}
+                        required
                         maxlength="100"
 
                         wire:model="{{$fieldType}}"
@@ -60,7 +60,7 @@
                         >
                     @endif
                     @error($fieldType)
-                        <span class="text-xs font-medium block ml-3">
+                        <span class="text-xs font-medium text-red-500 block ml-3">
                             {{$message}}
                         </span>
                     @enderror

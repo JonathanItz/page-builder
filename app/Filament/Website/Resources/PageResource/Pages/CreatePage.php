@@ -17,7 +17,7 @@ class CreatePage extends CreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         $data['user_id'] = auth()->id();
-        $data['random_id'] = substr(strrev(microtime(true) * 10000), 0, 5);
+        $data['random_id'] = generatePageID();
         $data['slug'] = Str::slug($data['title']);
 
         if($data['content']) {
