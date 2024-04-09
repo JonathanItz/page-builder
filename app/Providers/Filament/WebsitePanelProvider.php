@@ -31,11 +31,12 @@ class WebsitePanelProvider extends PanelProvider
             // ->passwordReset()
             // ->emailVerification()
             ->navigationItems([
-                NavigationItem::make('Settings')
-                    ->url(url('/builder/pages/settings'))
-                    ->icon('heroicon-o-presentation-chart-line')
-                    ->group('Pages')
-                    ->sort(3),
+                // NavigationItem::make('Page Settings')
+                //     ->url(url('/builder/pages/settings'))
+                //     ->icon('heroicon-o-adjustments-horizontal')
+                //     ->group('Pages')
+                //     ->sort(2)
+                //     ->isActiveWhen(fn () => request()->routeIs('filament.website.resources.pages.settings')),
             ])
             ->profile(isSimple: false)
             ->sidebarCollapsibleOnDesktop()

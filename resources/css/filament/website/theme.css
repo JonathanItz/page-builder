@@ -20,7 +20,7 @@
     }
 }
 
-.fi-sidebar-group-items {
+/* .fi-sidebar-group-items {
     @apply border border-gray-300 bg-gray-100 p-2 rounded-xl shadow-inner;
 
     .fi-sidebar-item {
@@ -28,7 +28,7 @@
             @apply hover:bg-gray-200;
         }
     }
-}
+} */
 
 #page-container, #page-content, #page-status {
     @apply bg-transparent ring-0 shadow-none;

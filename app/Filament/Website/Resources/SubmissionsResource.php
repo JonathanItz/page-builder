@@ -24,6 +24,8 @@ class SubmissionsResource extends Resource
 
     protected static ?string $navigationGroup = 'Pages';
 
+    protected static ?int $navigationSort = 3;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -71,7 +73,7 @@ class SubmissionsResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                // Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -79,6 +81,11 @@ class SubmissionsResource extends Resource
                 ]),
             ])
             ->defaultSort('created_at', 'desc');;
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
     }
 
     public static function getRelations(): array
