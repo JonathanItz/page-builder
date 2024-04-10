@@ -14,10 +14,16 @@ class Settings extends Page
 
     protected static string $view = 'filament.website.pages.settings';
 
+    public $brandColor = '#0891b2';
+
+    public function submitColors() {
+        dd($this);
+    }
+
     // TODO
     // For V2, set this to true so we can start adding settings
-    public static function canAccess(): bool
-    {
-        return false;
-    }
+    // public static function canAccess(): bool
+    // {
+    //     return false;
+    // }
 }
