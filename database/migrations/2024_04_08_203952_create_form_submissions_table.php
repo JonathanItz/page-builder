@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('form_submissions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('form_id');
+            $table->string('form_id');
             $table->unsignedBigInteger('page_id');
             $table->unsignedBigInteger('page_owner_id');
             $table->string('full_name')->nullable();

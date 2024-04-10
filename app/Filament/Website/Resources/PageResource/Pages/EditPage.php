@@ -44,7 +44,7 @@ class EditPage extends EditRecord
                     if(! array_key_exists('id', $data['content'][$key]['data']) ||
                     array_key_exists('id', $data['content'][$key]['data']) &&
                     (! isset($data['content'][$key]['data']['id']) || $data['content'][$key]['data']['id'] === null)) {
-                        $data['content'][$key]['data']['id'] = rand(100000, 999999);
+                        $data['content'][$key]['data']['id'] = $page->random_id . '-form';
                     }
                 }
             }

@@ -48,7 +48,7 @@
     }
 }
 
-.fi-resource-list-records-page.fi-resource-submissions {
+/* .fi-resource-list-records-page.fi-resource-submissions {
     .fi-ta-table {
         tr th:nth-child(2), tr td:nth-child(2) {
             display: none;
@@ -66,4 +66,4 @@
     .fi-ta-header-ctn {
         display: none;
     }
-}
+} */
