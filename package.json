@@ -17,6 +17,7 @@
         "vite": "^5.0"
     },
     "dependencies": {
-        "toastify-js": "^1.12.0"
+        "toastify-js": "^1.12.0",
+        "typed.js": "^2.1.0"
     }
 }

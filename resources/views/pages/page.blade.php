@@ -1,4 +1,4 @@
-<x-app-layout :showNavigation="false" backgroundColor="bg-white">
+<x-app-layout :showNavigation="false" backgroundColor="bg-white" :title="$page->title">
     @if (! $allPages->isEmpty() && $allPages->count() > 1)
         <nav x-data="{ open: false }" class="px-6 pt-4 lg:px-8">
             <div class="space-x-2 font-medium mx-auto max-w-2xl hidden md:block">
