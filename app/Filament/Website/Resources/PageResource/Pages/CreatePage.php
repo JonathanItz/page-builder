@@ -26,7 +26,7 @@ class CreatePage extends CreateRecord
                     if(! array_key_exists('id', $data['content'][$key]['data']) ||
                     array_key_exists('id', $data['content'][$key]['data']) &&
                     (! isset($data['content'][$key]['data']['id']) || $data['content'][$key]['data']['id'] === null)) {
-                        $data['content'][$key]['data']['id'] = $data['random_id'] . '-form';
+                        $data['content'][$key]['data']['id'] = $data['slug'] . '-' . rand(100, 999);
                     }
                 }
             }

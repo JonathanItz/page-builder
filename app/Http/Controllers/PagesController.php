@@ -20,6 +20,7 @@ class PagesController extends Controller
 
         $allPages = Page::where('user_id', $page->user_id)
             ->where('status', 'published')
+            ->orderBy('sort')
             ->get();
 
         $routeParameters = Route::getCurrentRoute()->parameters();

@@ -9,6 +9,7 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Illuminate\Support\HtmlString;
+use Filament\Tables\Actions\Action;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Builder;
@@ -19,12 +20,12 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
+use Filament\Tables\Columns\SelectColumn;
 use Filament\Forms\Components\Placeholder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Website\Resources\PageResource\Pages;
 use Illuminate\Database\Eloquent\Builder as LaravelBuilder;
 use App\Filament\Website\Resources\PageResource\RelationManagers;
-use Filament\Tables\Actions\Action;
 
 class PageResource extends Resource
 {
@@ -208,14 +209,21 @@ class PageResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('title'),
-                TextColumn::make('status')
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'draft' => 'gray',
-                        'reviewing' => 'warning',
-                        'published' => 'success',
-                        'rejected' => 'danger',
-                    }),
+                // TextColumn::make('status')
+                //     ->badge()
+                //     ->color(fn (string $state): string => match ($state) {
+                //         'draft' => 'gray',
+                //         'reviewing' => 'warning',
+                //         'published' => 'success',
+                //         'rejected' => 'danger',
+                //     }),
+                SelectColumn::make('status')
+                    ->selectablePlaceholder(false)
+                    ->options([
+                        'draft' => 'Draft',
+                        // 'reviewing' => 'Reviewing',
+                        'published' => 'Published',
+                    ])
             ])
             ->filters([
                 //
@@ -232,7 +240,8 @@ class PageResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
-            ->paginated(false);
+            ->paginated(false)
+            ->reorderable('sort');
     }
 
     public static function getRelations(): array

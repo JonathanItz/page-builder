@@ -39,12 +39,18 @@ class EditPage extends EditRecord
                         Storage::delete("/public/$file");
                     }
                 }
+            }
+        }
 
+        if($data['content']) {
+            foreach($data['content'] as $key => $content) {
+                
+                // Add ID to form
                 if($content['type'] === 'form' && array_key_exists($key, $data['content'])) {
                     if(! array_key_exists('id', $data['content'][$key]['data']) ||
                     array_key_exists('id', $data['content'][$key]['data']) &&
                     (! isset($data['content'][$key]['data']['id']) || $data['content'][$key]['data']['id'] === null)) {
-                        $data['content'][$key]['data']['id'] = $page->random_id . '-form';
+                        $data['content'][$key]['data']['id'] = $page->slug . '-' . rand(100, 999);
                     }
                 }
             }
