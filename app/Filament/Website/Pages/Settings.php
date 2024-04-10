@@ -16,6 +16,8 @@ class Settings extends Page
 
     public $brandColor = '#0891b2';
 
+    public $backgroundPatter = 'white';
+
     public function submitColors() {
         dd($this);
     }

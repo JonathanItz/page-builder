@@ -10,6 +10,7 @@
 
     <div
     x-data="{ activeTab: 'tab1' }"
+    class="setting-container"
     >
         <x-filament::tabs label="Content tabs" class="mb-8">
             <x-filament::tabs.item
@@ -34,31 +35,78 @@
             </x-filament::tabs.item>
         </x-filament::tabs>
 
-        <x-filament::input.wrapper x-show="activeTab === 'tab1'" class="p-6">
+        <x-filament::input.wrapper x-show="activeTab === 'tab1'" class="p-6 !ring-1 !ring-gray-200">
             <div
             x-init="
                 pickr = Pickr.create({
                     el: '.color-picker',
-                    theme: 'monolith', // or 'monolith', or 'nano'
+                    theme: 'monolith', // 'classic' 'monolith', or 'nano'
                     default: '{{$brandColor}}',
                     components: {
+                        hue: true,
                         preview: true,
                         interaction: {hex: true,rgba: true,hsla: true,hsva: true,cmyk: true,input: true,clear: true,save: true}
                     }
                 })
 
                 pickr.on('save', function(color) {
-                    $wire.brandColor = color.toHEXA().toString()
+                    brandColor = color.toHEXA().toString()
+                    $wire.brandColor = brandColor
+                    document.querySelector('.setting-container').style.cssText = '--brand-color: '+brandColor+'';
                 })
             "
             >
-                <label for="background">
-                    <span class="text-sm font-medium leading-6 text-gray-950 dark:text-white">
-                        Brand Color
-                    </span>
+                <label for="color-picker" class="text-sm font-medium leading-6 text-gray-950 dark:text-white">
+                    Brand Color
                 </label>
             
-                <input type="text" class="color-picker">
+                <input type="text" id="color-picker" class="color-picker">
+            </div>
+
+            <div class="mt-8">
+                <style>
+                    .setting-container {
+                        --brand-color: {{$brandColor}};
+                    }
+    
+                    .polka {
+                        background-color: #ffffff;
+                        opacity: 0.8;
+                        background-image: radial-gradient(var(--brand-color) 0.8px, #ffffff 0.8px);
+                        background-size: 16px 16px;
+                    }
+    
+                    .polka2 {
+                        background-color: #ffffff;
+                        opacity: 0.8;
+                        background-image:  radial-gradient(var(--brand-color) 0.8px, transparent 0.8px), radial-gradient(var(--brand-color) 0.8px, #ffffff 0.8px);
+                        background-size: 32px 32px;
+                        background-position: 0 0,16px 16px;
+                    }
+                </style>
+
+                <div>
+                    <label for="background-pattern" class="text-sm font-medium leading-6 text-gray-950 dark:text-white">
+                        Background Pattern
+                    </label>
+                
+                    <div class="grid grid-cols-6 gap-4">
+                        <div>
+                            <input type="radio" id="white" value="white" class="peer hidden" wire:model="backgroundPatter">
+                            <label for="white" class="bg-white block cursor-pointer w-full py-12 shadow-xl rounded-xl peer-checked:ring-2 peer-checked:ring-cyan-600"></label>
+                        </div>
+
+                        <div>
+                            <input type="radio" id="polka" value="polka" class="peer hidden" wire:model="backgroundPatter">
+                            <label for="polka" class="polka cursor-pointer block w-full py-12 shadow-xl rounded-xl peer-checked:ring-2 peer-checked:ring-cyan-600"></label>
+                        </div>
+
+                        <div>
+                            <input type="radio" id="polka2" value="polka2" class="peer hidden" wire:model="backgroundPatter">
+                            <label for="polka2" class="polka2 cursor-pointer block w-full py-12 shadow-xl rounded-xl peer-checked:ring-2 peer-checked:ring-cyan-600"></label>
+                        </div>
+                    </div>    
+                </div>
             </div>
 
             <x-filament::button wire:click="submitColors" class="mt-8">
