@@ -22,4 +22,8 @@ class Page extends Model
     public function submissions() {
         return $this->hasMany(FormSubmission::class);
     }
+
+    public function user() {
+        return $this->belongsTo(User::class)->first();
+    }
 }

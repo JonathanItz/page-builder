@@ -1,5 +1,57 @@
-<x-app-layout :showNavigation="false">
-    <div class="bg-white px-6 py-24 lg:px-8 min-h-screen">
+<x-app-layout :showNavigation="false" backgroundColor="bg-white">
+    @if (! $allPages->isEmpty() && $allPages->count() > 1)
+        <nav x-data="{ open: false }" class="px-6 pt-4 lg:px-8">
+            <div class="space-x-2 font-medium mx-auto max-w-2xl hidden md:block">
+                @foreach ($allPages as $nav)
+                    <a
+                    href="{{route('page', [$nav['random_id'], $nav['slug']])}}"
+                    wire:navigate
+                    class="
+                    hover:bg-gray-100 transition-colors
+                    rounded-md px-2 py-1
+                    @if($nav['random_id'] === $uniqueId)
+                        bg-gray-100
+                    @endif
+                    "
+                    >
+                        {{$nav['title']}}
+                    </a>
+                @endforeach
+            </div>
+
+            <div class="flex justify-end md:hidden">
+                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Responsive Navigation Menu -->
+            <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden mt-2">
+                <div class="flex flex-col gap-2 font-medium mx-auto max-w-2xl">
+                    @foreach ($allPages as $nav)
+                        <a
+                        href="{{route('page', [$nav['random_id'], $nav['slug']])}}"
+                        wire:navigate
+                        class="
+                        hover:bg-gray-100 transition-colors
+                        rounded-md px-2 py-1
+                        @if($nav['random_id'] === $uniqueId)
+                            bg-gray-100
+                        @endif
+                        "
+                        >
+                            {{$nav['title']}}
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+        </nav>
+    @endif
+
+    <div class="py-16 md:py-24 px-6 lg:px-8 min-h-screen">
         <div class="mx-auto max-w-2xl text-base leading-7 text-gray-700 prose">
             @if ($page['content'])
                 @foreach ($page['content'] as $content)
@@ -8,4 +60,6 @@
             @endif
         </div>
     </div>
+
+    @includeIf('pages.footer')
 </x-app-layout>
