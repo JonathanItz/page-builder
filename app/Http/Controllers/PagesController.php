@@ -10,12 +10,19 @@ use Illuminate\Support\Facades\Route;
 class PagesController extends Controller
 {
     public function show($unique_id, $slug) {
-        $pages = Site::where('unique_id', $unique_id)
-        ?->first()
+        $site = Site::where('unique_id', $unique_id)
+        ->with(['user', 'pages'])
+        ?->first();
+
+        if(! hasAccess($site->user)) {
+            return abort(404);
+        }
+
+        $pages = $site
         ?->pages()
-        ->where('status', 'published')
-        ->orderBy('sort', 'desc')
-        ->get();
+        ?->where('status', 'published')
+        ?->orderBy('sort', 'desc')
+        ?->get();
 
         $page = $pages
             ->where('slug', $slug)

@@ -60,8 +60,10 @@ function getDaysLeftInTrial(): bool|int {
 | Returns false if there is no trial left.
 |
 */
-function hasAccess(): bool {
-    $user = auth()->user();
+function hasAccess($user = null): bool {
+    if(! $user) {
+        $user = auth()->user();
+    }
 
     if($user->onTrial() || $user->subscribed()) {
         return true;

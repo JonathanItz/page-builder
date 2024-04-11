@@ -16,7 +16,13 @@ backgroundColor="bg-white"
 theme="{{isset($settings['theme']) ?$settings['theme']:''}}"
 pattern="{{isset($settings['backgroundPattern']) ?$settings['backgroundPattern']:''}}"
 >
-    @if (isset($settings['showNav']) && $settings['showNav'] && ! $allPages->isEmpty() && $allPages->count() > 1)
+    @if (
+        (isset($settings['showNav']) && $settings['showNav'] !== false)
+        ||
+        ! isset($settings['showNav'])
+        &&
+        ! $allPages->isEmpty() && $allPages->count() > 1
+    )
         <nav x-data="{ open: false }" class="px-6 pt-4 lg:px-8">
             <div class="space-x-2 font-medium mx-auto max-w-2xl hidden md:block">
                 @foreach ($allPages as $nav)

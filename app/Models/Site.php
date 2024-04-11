@@ -16,4 +16,8 @@ class Site extends Model
     public function pages() {
         return $this->hasMany(Page::class);
     }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

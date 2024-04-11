@@ -6,7 +6,7 @@
                     @if ($hasAccess)
                         <a href="{{route('filament.website.resources.pages.index')}}">Start Creating <x-heroicon-o-arrow-right-circle class="h-7 w-7 inline" /></a>
                     @else
-                        Looks like you don't have access
+                        Start your subscription to get access
                     @endif
                 </h2>
 
