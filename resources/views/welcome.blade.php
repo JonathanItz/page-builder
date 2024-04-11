@@ -16,12 +16,11 @@
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
-
         <div class="bg-white" x-data="{open: false}">
             <header class="absolute inset-x-0 top-0 z-50">
             <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div class="flex lg:flex-1">
-                <a href="#" class="-m-1.5 p-1.5">
+                <a href="/" class="-m-1.5 p-1.5">
                     <span class="sr-only">Igloo Pages</span>
                     <img class="h-8 w-auto" src="{{asset('assets/images/logo.svg')}}" alt="Igloo Pages logo">
                 </a>
@@ -122,6 +121,64 @@
         </div>
 
 
+        <div class="overflow-hidden bg-white py-24 sm:py-32">
+            <div class="mx-auto max-w-7xl md:px-6 lg:px-8">
+              <div class="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
+                <div class="px-6 lg:px-0 lg:pr-4 lg:pt-4">
+                  <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
+                    <h2 class="text-base font-semibold leading-7 text-cyan-600">Pick your own design</h2>
+                    <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Match your brand</p>
+                    <p class="mt-6 text-lg leading-8 text-gray-600">
+                        Design your perfect webpage effortlessly with Igloo Pages. Our minimalist design and user-friendly interface make building your site a breeze. Simply select a design that complements your brand and start creating today!
+                    </p>
+                    <dl class="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
+                      <div class="relative pl-9">
+                        <dt class="inline font-semibold text-gray-900">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="absolute left-1 top-1 h-5 w-5 text-cyan-600">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
+                              </svg>
+                          Page Creation
+                        </dt>
+                        <dd class="inline">Build up to five unique pages for your website, each tailored to your specific needs and vision.</dd>
+                      </div>
+                      <div class="relative pl-9">
+                        <dt class="inline font-semibold text-gray-900">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="absolute left-1 top-1 h-5 w-5 text-cyan-600">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
+                              </svg>
+                          
+                          Section Reordering.
+                        </dt>
+                        <dd class="inline">Effortlessly rearrange page sections to achieve the perfect layout for your content with just a few clicks.</dd>
+                      </div>
+                      <div class="relative pl-9">
+                        <dt class="inline font-semibold text-gray-900">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="absolute left-1 top-1 h-5 w-5 text-cyan-600">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 0 0-1.883 2.542l.857 6a2.25 2.25 0 0 0 2.227 1.932H19.05a2.25 2.25 0 0 0 2.227-1.932l.857-6a2.25 2.25 0 0 0-1.883-2.542m-16.5 0V6A2.25 2.25 0 0 1 6 3.75h3.879a1.5 1.5 0 0 1 1.06.44l2.122 2.12a1.5 1.5 0 0 0 1.06.44H18A2.25 2.25 0 0 1 20.25 9v.776" />
+                          </svg>
+                          
+                          Dynamic Forms.
+                        </dt>
+                        <dd class="inline">Engage your audience effectively by seamlessly integrating dynamic forms into your pages, making interactions with your site smooth and intuitive.</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+                <div class="sm:px-6 lg:px-0">
+                  <div class="relative isolate overflow-hidden bg-cyan-500 px-6 pt-8 sm:mx-auto sm:max-w-2xl sm:rounded-3xl sm:pl-16 sm:pr-0 sm:pt-16 lg:mx-0 lg:max-w-none">
+                    <div class="absolute -inset-y-px -left-3 -z-10 w-full origin-bottom-left skew-x-[-30deg] bg-cyan-100 opacity-20 ring-1 ring-inset ring-white" aria-hidden="true"></div>
+                    <div class="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
+                      <img src="{{asset('/assets/images/homepage/featured.png')}}" alt="Product screenshot" width="2432" height="1442" class="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10">
+                    </div>
+                    <div class="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 sm:rounded-3xl" aria-hidden="true"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        
+
         <div class="bg-white py-24 sm:py-32" id="prices">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
               <div class="mx-auto max-w-2xl sm:text-center">
@@ -131,9 +188,9 @@
               <div class="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
                 <div class="p-8 sm:p-10 lg:flex-auto">
                   <h3 class="text-2xl font-bold tracking-tight text-gray-900">Standard Plan</h3>
-                  <p class="mt-6 text-base leading-7 text-gray-600">Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque amet indis perferendis blanditiis repellendus etur quidem assumenda.</p>
+                  <p class="mt-6 text-base leading-7 text-gray-600">Build dynamic pages to showcase what you need. Show-off your brand, create waitlist pages, or build forms to collect leads.</p>
                   <div class="mt-10 flex items-center gap-x-4">
-                    <h4 class="flex-none text-sm font-semibold leading-6 text-cyan-600">What’s included</h4>
+                    <h4 class="flex-none text-sm font-semibold leading-6 text-cyan-600">What's included</h4>
                     <div class="h-px flex-auto bg-gray-100"></div>
                   </div>
                   <ul role="list" class="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600 sm:grid-cols-2 sm:gap-6">
@@ -147,20 +204,20 @@
                       <svg class="h-6 w-5 flex-none text-cyan-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                         <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                       </svg>
-                      Dynamic reorderable page sections
+                      Reorderable page sections
                     </li>
                     <li class="flex gap-x-3">
                       <svg class="h-6 w-5 flex-none text-cyan-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                         <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                       </svg>
-                      Add one form to each page
+                      Dynamic forms
                     </li>
-                    {{-- <li class="flex gap-x-3">
+                    <li class="flex gap-x-3">
                       <svg class="h-6 w-5 flex-none text-cyan-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                         <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                       </svg>
-                      Official member t-shirt
-                    </li> --}}
+                      Custom design to match your brand
+                    </li>
                   </ul>
                 </div>
                 <div class="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">

@@ -12,7 +12,7 @@
     x-data="{ activeTab: 'tab1' }"
     class="setting-container"
     >
-        <x-filament::tabs label="Content tabs" class="mb-8">
+        {{-- <x-filament::tabs label="Content tabs" class="mb-8">
             <x-filament::tabs.item
                 alpine-active="activeTab === 'tab1'"
                 x-on:click="activeTab = 'tab1'"
@@ -26,17 +26,10 @@
             >
                 Details
             </x-filament::tabs.item>
-        
-            {{-- <x-filament::tabs.item
-                alpine-active="activeTab === 'tab3'"
-                x-on:click="activeTab = 'tab3'"
-            >
-                Tab 3
-            </x-filament::tabs.item> --}}
-        </x-filament::tabs>
+        </x-filament::tabs> --}}
 
         <x-filament::section x-show="activeTab === 'tab1'" class="">
-            <div>
+            <div wire:ignore>
                 <label for="showNav" class="text-sm font-medium leading-6 text-gray-950 dark:text-white">
                     Hide/Show Nav Links
                 </label>
@@ -78,6 +71,7 @@
             class="mt-8"
             wire:ignore
             x-init="
+                {{-- https://github.com/simonwep/pickr --}}
                 pickr = Pickr.create({
                     el: '.color-picker',
                     theme: 'monolith', // 'classic' 'monolith', or 'nano'

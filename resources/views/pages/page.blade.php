@@ -17,9 +17,11 @@ theme="{{isset($settings['theme']) ?$settings['theme']:''}}"
 pattern="{{isset($settings['backgroundPattern']) ?$settings['backgroundPattern']:''}}"
 >
     @if (
-        (isset($settings['showNav']) && $settings['showNav'] !== false)
-        ||
-        ! isset($settings['showNav'])
+        (
+            (isset($settings['showNav']) && $settings['showNav'] !== false)
+            ||
+            ! isset($settings['showNav'])
+        )
         &&
         ! $allPages->isEmpty() && $allPages->count() > 1
     )
