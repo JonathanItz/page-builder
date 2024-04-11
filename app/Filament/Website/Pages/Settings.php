@@ -18,13 +18,20 @@ class Settings extends Page
 
     protected static string $view = 'filament.website.pages.settings';
 
+    public $site;
+
+    public $showNav = true;
+
     public $brandColor = '#0891b2';
 
-    public $backgroundPattern = 'white';
+    public $theme = 'light';
+    
+    public $possibleThemes = ['light', 'dark'];
+    
+    public $backgroundPattern = 'blank';
 
-    public $possiblePatterns = ['white', 'gray', 'polka', 'polka2'];
+    public $possiblePatterns = ['blank', 'polka', 'polka2'];
 
-    public $site;
 
     public function mount() {
         $user = auth()->user();
@@ -33,6 +40,7 @@ class Settings extends Page
 
         $settings = $site->settings;
 
+        // Update properties if they exist in site table
         if($settings) {
             foreach($settings as $key => $setting) {
                 if(property_exists($this, $key)) {
@@ -50,12 +58,15 @@ class Settings extends Page
             [
                 'brandColor' => ['hex_color'],
                 'backgroundPattern' => [Rule::in($this->possiblePatterns)],
+                'showNav' => ['boolean'],
             ]
         );
 
         $settings = [
             'brandColor' => $this->brandColor,
+            'theme' => $this->theme,
             'backgroundPattern' => $this->backgroundPattern,
+            'showNav' => $this->showNav,
         ];
 
         foreach($settings as $key => $setting) {

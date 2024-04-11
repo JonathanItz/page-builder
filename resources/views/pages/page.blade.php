@@ -9,19 +9,27 @@
     <link rel="stylesheet" href="{{asset('/assets/images/css/patterns.css')}}">
 @endpush
 
-<x-app-layout :showNavigation="false" backgroundColor="bg-white" :title="$page->title" backgroundPattern="{{$settings['backgroundPattern']}}">
-    @if (! $allPages->isEmpty() && $allPages->count() > 1)
+<x-app-layout
+:showNavigation="false"
+backgroundColor="bg-white"
+:title="$page->title"
+theme="{{isset($settings['theme']) ?$settings['theme']:''}}"
+pattern="{{isset($settings['backgroundPattern']) ?$settings['backgroundPattern']:''}}"
+>
+    @if (isset($settings['showNav']) && $settings['showNav'] && ! $allPages->isEmpty() && $allPages->count() > 1)
         <nav x-data="{ open: false }" class="px-6 pt-4 lg:px-8">
             <div class="space-x-2 font-medium mx-auto max-w-2xl hidden md:block">
                 @foreach ($allPages as $nav)
                     <a
-                    href="{{route('page', [$nav['site_id'], $nav['slug']])}}"
+                    href="{{route('page', [$uniqueId, $nav['slug']])}}"
                     wire:navigate
                     class="
+                    dark:text-white
                     hover:bg-gray-100 transition-colors
                     rounded-md px-2 py-1
+                    dark:hover:bg-slate-600
                     @if($nav['slug'] === $slug)
-                        bg-gray-100
+                        bg-gray-100 dark:bg-slate-700
                     @endif
                     "
                     >
@@ -44,13 +52,15 @@
                 <div class="flex flex-col gap-2 font-medium mx-auto max-w-2xl">
                     @foreach ($allPages as $nav)
                         <a
-                        href="{{route('page', [$nav['site_id'], $nav['slug']])}}"
+                        href="{{route('page', [$uniqueId, $nav['slug']])}}"
                         wire:navigate
                         class="
+                        dark:text-white
                         hover:bg-gray-100 transition-colors
                         rounded-md px-2 py-1
+                        dark:hover:bg-slate-600
                         @if($nav['slug'] === $slug)
-                            bg-gray-100
+                            bg-gray-100 dark:bg-slate-700
                         @endif
                         "
                         >
@@ -63,7 +73,7 @@
     @endif
 
     <div class="py-16 md:py-24 px-6 lg:px-8 min-h-screen">
-        <div class="mx-auto max-w-2xl text-base leading-7 text-gray-700 prose">
+        <div class="mx-auto max-w-2xl text-base leading-7 text-gray-700 dark:text-white prose">
             @if ($page['content'])
                 @foreach ($page['content'] as $content)
                     @includeIf('components.template-parts.'.$content['type'])

@@ -4,13 +4,15 @@
             <div class="flex gap-6 items-end mt-8 first:mt-0" wire:key="{{ rand() }}">
                 <div class="relative w-full">
                     @if ($fieldType === 'feedback')
-                        <label for="feedback" class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
+                        <label for="feedback" class="absolute -top-2 left-2 inline-block bg-white dark:bg-slate-800 dark:text-white rounded-sm px-1 text-xs font-medium text-gray-900">
                             Feedback
                         </label>
                         <textarea
                         class="
                         input-brand-color
-                        block w-full rounded-xl border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:leading-6
+                        dark:bg-slate-800 dark:ring-slate-600
+                        focus:ring-2 focus:ring-inset ring-1 ring-inset
+                        block w-full rounded-xl border-0 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 dark:placeholder:text-slate-500 dark:text-white sm:leading-6
                         @error($fieldType)
                         ring-red-500
                         @else
@@ -23,7 +25,7 @@
                         wire:model="{{$fieldType}}"
                         ></textarea>
                     @else
-                        <label for="{{$fieldType}}" class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
+                        <label for="{{$fieldType}}" class="absolute -top-2 left-2 inline-block bg-white dark:bg-slate-800 dark:text-white rounded-sm px-1 text-xs font-medium text-gray-900">
                             @if ($fieldType === 'email')
                                 Email
                             @elseif($fieldType === 'phone')
@@ -37,7 +39,9 @@
                         id="{{$fieldType}}"
                         class="
                         input-brand-color
-                        block w-full rounded-xl border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:leading-6
+                        dark:bg-slate-800 dark:ring-slate-600
+                        focus:ring-2 focus:ring-inset ring-1 ring-inset
+                        block w-full rounded-xl border-0 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 dark:placeholder:text-slate-500 dark:text-white sm:leading-6
                         @error($fieldType)
                         ring-red-500
                         @else
@@ -75,7 +79,7 @@
     <div class="mt-6 flex items-center justify-end gap-x-6">
         {{-- <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button> --}}
         <button
-        class="bg-brand-color hover:opacity-70 transition-opacity inline-flex items-center gap-1 justify-center rounded-xl px-3 py-2 text-sm font-semibold shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600"
+        class="bg-brand-color hover:opacity-70 dark:hover:opacity-80 transition-opacity inline-flex items-center gap-1 justify-center rounded-xl px-3 py-2 text-sm font-semibold shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600"
         >
             Submit
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 inline">

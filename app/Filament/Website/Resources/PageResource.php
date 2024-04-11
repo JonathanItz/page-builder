@@ -231,7 +231,9 @@ class PageResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Action::make('View')
-                    ->url(fn (Page $record): string => route('page', [$record['site_id'], $record['slug']]))
+                    ->url(function(Page $record) {
+                        return route('page', [$record->site->unique_id, $record['slug']]);
+                    })
                     ->openUrlInNewTab()
                     ->icon('heroicon-o-arrow-top-right-on-square')
             ])
@@ -240,6 +242,7 @@ class PageResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
+            ->defaultSort('sort', 'asc')
             ->paginated(false)
             ->reorderable('sort');
     }

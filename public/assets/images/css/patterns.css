@@ -1,12 +1,15 @@
 .polka {
-    background-color: #ffffff;
-    background-image: radial-gradient(var(--brand-color) 0.6px, #ffffff 0.6px);
-    background-size: 16px 16px;
+    /* background-color: #ffffff; */
+    background-image: radial-gradient(var(--brand-color) 0.8px, #ffffff00 0.8px);
+    background-size: 32px 32px;
+    background-position: center;
+    background-size: 24px 24px;
 }
 
 .polka2 {
-    background-color: #ffffff;
-    background-image:  radial-gradient(var(--brand-color) 0.6px, transparent 0.6px), radial-gradient(var(--brand-color) 0.6px, #ffffff 0.6px);
-    background-size: 32px 32px;
-    background-position: 0 0,16px 16px;
+    /* background-color: #ffffff; */
+    background-image:  radial-gradient(var(--brand-color) 0.8px, transparent 0.8px), radial-gradient(var(--brand-color) 0.8px, #ffffff00 0.8px);
+    background-size: 48px 48px;
+    background-position: center;
+    background-position: 0 0,24px 24px;
 }

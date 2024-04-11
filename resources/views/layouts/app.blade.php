@@ -17,7 +17,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
     </head>
-    <body class="font-sans antialiased {{$backgroundPattern}}">
+    <body class="font-sans antialiased {{$pattern}} {{$theme}} dark:bg-slate-800">
         <div class="min-h-screen">
             @if ($showNavigation)
                 {{-- <livewire:layout.navigation /> --}}

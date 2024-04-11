@@ -3,17 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use App\Models\Site;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 class PagesController extends Controller
 {
-    public function show($siteId, $slug) {
-        $page = Page::where('site_id', $siteId)
-                    ->where('slug', $slug)
-                    ->where('status', 'published')
-                    ->with('site')
-                    ->first();
+    public function show($unique_id, $slug) {
+        $pages = Site::where('unique_id', $unique_id)
+        ?->first()
+        ?->pages()
+        ->where('status', 'published')
+        ->orderBy('sort', 'desc')
+        ->get();
+
+        $page = $pages
+            ->where('slug', $slug)
+            // ->where('status', 'published')
+            ->first();
 
         if(! $page) {
             return abort(404);
@@ -32,19 +39,15 @@ class PagesController extends Controller
             }
         }
 
-        $allPages = Page::where('site_id', $page->site_id)
-            ->where('status', 'published')
-            ->orderBy('sort')
-            ->get();
-
         $routeParameters = Route::getCurrentRoute()->parameters();
         $slug = $routeParameters['slug'];
 
         return view('pages.page', [
             'page' => $page,
-            'allPages' => $allPages,
+            'allPages' => $pages,
             'slug' => $slug,
             'settings' => $settings,
+            'uniqueId' => $unique_id
         ]);
     }
 }

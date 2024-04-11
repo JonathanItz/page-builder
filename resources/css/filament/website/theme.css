@@ -67,3 +67,11 @@
         display: none;
     }
 } */
+
+.pickr .pcr-button {
+    width: 100% !important;
+
+    &:after, &:before {
+        border-radius: .5rem !important;
+    }
+}
