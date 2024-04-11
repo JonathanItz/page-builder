@@ -23,7 +23,7 @@ class Page extends Model
         return $this->hasMany(FormSubmission::class);
     }
 
-    public function user() {
-        return $this->belongsTo(User::class)->first();
+    public function site() {
+        return $this->belongsTo(Site::class);
     }
 }

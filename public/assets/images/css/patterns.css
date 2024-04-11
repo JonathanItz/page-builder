@@ -1,0 +1,12 @@
+.polka {
+    background-color: #ffffff;
+    background-image: radial-gradient(var(--brand-color) 0.6px, #ffffff 0.6px);
+    background-size: 16px 16px;
+}
+
+.polka2 {
+    background-color: #ffffff;
+    background-image:  radial-gradient(var(--brand-color) 0.6px, transparent 0.6px), radial-gradient(var(--brand-color) 0.6px, #ffffff 0.6px);
+    background-size: 32px 32px;
+    background-position: 0 0,16px 16px;
+}

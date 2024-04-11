@@ -1,15 +1,26 @@
-<x-app-layout :showNavigation="false" backgroundColor="bg-white" :title="$page->title">
+@push('header-scripts')
+    <style>
+        :root {
+            --brand-color: {{$settings['brandColor']}};
+            --brand-contrast-color: {{getContrastColor($settings['brandColor'])}}
+        }
+    </style>
+
+    <link rel="stylesheet" href="{{asset('/assets/images/css/patterns.css')}}">
+@endpush
+
+<x-app-layout :showNavigation="false" backgroundColor="bg-white" :title="$page->title" backgroundPattern="{{$settings['backgroundPattern']}}">
     @if (! $allPages->isEmpty() && $allPages->count() > 1)
         <nav x-data="{ open: false }" class="px-6 pt-4 lg:px-8">
             <div class="space-x-2 font-medium mx-auto max-w-2xl hidden md:block">
                 @foreach ($allPages as $nav)
                     <a
-                    href="{{route('page', [$nav['random_id'], $nav['slug']])}}"
+                    href="{{route('page', [$nav['site_id'], $nav['slug']])}}"
                     wire:navigate
                     class="
                     hover:bg-gray-100 transition-colors
                     rounded-md px-2 py-1
-                    @if($nav['random_id'] === $uniqueId)
+                    @if($nav['slug'] === $slug)
                         bg-gray-100
                     @endif
                     "
@@ -33,12 +44,12 @@
                 <div class="flex flex-col gap-2 font-medium mx-auto max-w-2xl">
                     @foreach ($allPages as $nav)
                         <a
-                        href="{{route('page', [$nav['random_id'], $nav['slug']])}}"
+                        href="{{route('page', [$nav['site_id'], $nav['slug']])}}"
                         wire:navigate
                         class="
                         hover:bg-gray-100 transition-colors
                         rounded-md px-2 py-1
-                        @if($nav['random_id'] === $uniqueId)
+                        @if($nav['slug'] === $slug)
                             bg-gray-100
                         @endif
                         "

@@ -6,7 +6,7 @@
 
     <!-- Modern or es5 bundle -->
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script> --}}
 
     <div
     x-data="{ activeTab: 'tab1' }"
@@ -24,19 +24,20 @@
                 alpine-active="activeTab === 'tab2'"
                 x-on:click="activeTab = 'tab2'"
             >
-                Tab 2
+                Details
             </x-filament::tabs.item>
         
-            <x-filament::tabs.item
+            {{-- <x-filament::tabs.item
                 alpine-active="activeTab === 'tab3'"
                 x-on:click="activeTab = 'tab3'"
             >
                 Tab 3
-            </x-filament::tabs.item>
+            </x-filament::tabs.item> --}}
         </x-filament::tabs>
 
-        <x-filament::input.wrapper x-show="activeTab === 'tab1'" class="p-6 !ring-1 !ring-gray-200">
+        <x-filament::section x-show="activeTab === 'tab1'" class="">
             <div
+            wire:ignore
             x-init="
                 pickr = Pickr.create({
                     el: '.color-picker',
@@ -60,7 +61,11 @@
                     Brand Color
                 </label>
             
-                <input type="text" id="color-picker" class="color-picker">
+                <div>
+                    <div class="shadow inline-block rounded-md">
+                        <input type="text" id="color-picker" class="color-picker">
+                    </div>
+                </div>
             </div>
 
             <div class="mt-8">
@@ -68,22 +73,9 @@
                     .setting-container {
                         --brand-color: {{$brandColor}};
                     }
-    
-                    .polka {
-                        background-color: #ffffff;
-                        opacity: 0.8;
-                        background-image: radial-gradient(var(--brand-color) 0.8px, #ffffff 0.8px);
-                        background-size: 16px 16px;
-                    }
-    
-                    .polka2 {
-                        background-color: #ffffff;
-                        opacity: 0.8;
-                        background-image:  radial-gradient(var(--brand-color) 0.8px, transparent 0.8px), radial-gradient(var(--brand-color) 0.8px, #ffffff 0.8px);
-                        background-size: 32px 32px;
-                        background-position: 0 0,16px 16px;
-                    }
                 </style>
+
+                <link rel="stylesheet" href="{{asset('/assets/images/css/patterns.css')}}">
 
                 <div>
                     <label for="background-pattern" class="text-sm font-medium leading-6 text-gray-950 dark:text-white">
@@ -91,27 +83,38 @@
                     </label>
                 
                     <div class="grid grid-cols-6 gap-4">
-                        <div>
-                            <input type="radio" id="white" value="white" class="peer hidden" wire:model="backgroundPatter">
-                            <label for="white" class="bg-white block cursor-pointer w-full py-12 shadow-xl rounded-xl peer-checked:ring-2 peer-checked:ring-cyan-600"></label>
-                        </div>
-
-                        <div>
-                            <input type="radio" id="polka" value="polka" class="peer hidden" wire:model="backgroundPatter">
-                            <label for="polka" class="polka cursor-pointer block w-full py-12 shadow-xl rounded-xl peer-checked:ring-2 peer-checked:ring-cyan-600"></label>
-                        </div>
-
-                        <div>
-                            <input type="radio" id="polka2" value="polka2" class="peer hidden" wire:model="backgroundPatter">
-                            <label for="polka2" class="polka2 cursor-pointer block w-full py-12 shadow-xl rounded-xl peer-checked:ring-2 peer-checked:ring-cyan-600"></label>
-                        </div>
+                        @foreach ($possiblePatterns as $pattern)
+                            <div>
+                                <input type="radio" id="{{$pattern}}" value="{{$pattern}}" class="peer hidden" wire:model="backgroundPattern">
+                                <label for="{{$pattern}}" class="
+                                @if($pattern === 'white')
+                                    bg-white
+                                @elseif($pattern === 'gray')
+                                    bg-gray-800
+                                @else
+                                    {{$pattern}}
+                                @endif
+                                block cursor-pointer w-full py-12 shadow-xl rounded-xl peer-checked:ring-2 peer-checked:ring-cyan-600
+                                "></label>
+                            </div>
+                        @endforeach
                     </div>    
                 </div>
             </div>
 
-            <x-filament::button wire:click="submitColors" class="mt-8">
+            @if ($errors->any())
+                <div class="text-sm text-red-600 mt-6">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <x-filament::button wire:click="submitStyles" class="mt-8">
                 Save Settings
             </x-filament::button>
-        </x-filament::input.wrapper>
+        </x-filament::section>
     </div>
 </x-filament-panels::page>

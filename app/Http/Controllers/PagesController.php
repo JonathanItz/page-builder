@@ -8,28 +8,43 @@ use Illuminate\Support\Facades\Route;
 
 class PagesController extends Controller
 {
-    public function show($randomId, $slug) {
-        $page = Page::where('random_id', $randomId)
+    public function show($siteId, $slug) {
+        $page = Page::where('site_id', $siteId)
                     ->where('slug', $slug)
                     ->where('status', 'published')
+                    ->with('site')
                     ->first();
 
         if(! $page) {
             return abort(404);
         }
 
-        $allPages = Page::where('user_id', $page->user_id)
+        $settings = [
+            'brandColor' => '#0891b2',
+            'backgroundPattern' => 'white',
+        ];
+
+        $siteSettings = $page->site->settings;
+
+        if(isset($siteSettings) && ! empty($siteSettings)) {
+            foreach($siteSettings as $key => $setting) {
+                $settings[$key] = $setting;
+            }
+        }
+
+        $allPages = Page::where('site_id', $page->site_id)
             ->where('status', 'published')
             ->orderBy('sort')
             ->get();
 
         $routeParameters = Route::getCurrentRoute()->parameters();
-        $uniqueId = $routeParameters['unique_id'];
+        $slug = $routeParameters['slug'];
 
         return view('pages.page', [
             'page' => $page,
             'allPages' => $allPages,
-            'uniqueId' => $uniqueId,
+            'slug' => $slug,
+            'settings' => $settings,
         ]);
     }
 }

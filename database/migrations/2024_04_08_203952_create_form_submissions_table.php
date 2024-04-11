@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('form_id');
             $table->unsignedBigInteger('page_id');
-            $table->unsignedBigInteger('page_owner_id');
+            $table->unsignedBigInteger('site_id');
             $table->string('full_name')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('page_id')->references('id')->on('pages')->onDelete('cascade');
-            $table->foreign('page_owner_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('site_id')->references('id')->on('sites')->onDelete('cascade');
         });
     }
 

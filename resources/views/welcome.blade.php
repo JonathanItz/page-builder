@@ -40,10 +40,11 @@
                     <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Marketplace</a>
                     <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Company</a>
                 </div> --}}
-                <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                <div class="hidden lg:flex lg:flex-1 lg:justify-end gap-4">
                     @auth
                         <a href="{{route('filament.website.pages.dashboard')}}" class="text-sm font-semibold leading-6 text-gray-900">Dashboard <span aria-hidden="true">&rarr;</span></a>
                     @else
+                      	<a href="{{route('register')}}" class="text-sm font-semibold leading-6 text-gray-900">Register</a>
                         <a href="{{route('login')}}" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
                     @endauth
                 </div>

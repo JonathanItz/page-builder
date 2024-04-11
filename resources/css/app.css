@@ -5,3 +5,12 @@
 .prose :where(h2):not(:where([class~=not-prose],[class~=not-prose] *)) {
     margin-top: 1rem;
 }
+
+.bg-brand-color {
+    background-color: var(--brand-color);
+    color: var(--brand-contrast-color);
+}
+
+.input-brand-color:focus {
+    box-shadow: var(--tw-ring-offset-shadow), inset 0 0 0 calc(2px + 0px ) var(--brand-color), var(--tw-shadow, 0 0 #0000) !important;
+}

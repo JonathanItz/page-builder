@@ -13,16 +13,15 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('site_id');
             $table->unsignedBigInteger('sort')->nullable();
             $table->string('title');
-            $table->string('random_id');
             $table->string('slug');
             $table->json('content');
             $table->string('status')->default('draft');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('site_id')->references('id')->on('sites')->onDelete('cascade');
         });
     }
 

@@ -18,7 +18,7 @@ class PageForm extends Component
     #[Locked]
     public $formFields = [];
 
-    public $pageOwner;
+    public $sideId;
     
     public $full_name;
     public $email;
@@ -29,8 +29,8 @@ class PageForm extends Component
 
     public function mount() {
         $page = Page::find($this->pageId);
-        $ownerId = $page->user_id;
-        $this->pageOwner = $ownerId;
+        $sideId = $page->site_id;
+        $this->sideId = $sideId;
     }
 
     public function submit() {
@@ -68,7 +68,7 @@ class PageForm extends Component
 
         $submission->page_id = $this->pageId;
         $submission->form_id = $this->formId;
-        $submission->page_owner_id = $this->pageOwner;
+        $submission->site_id = $this->sideId;
 
         $submission->save();
 
@@ -80,7 +80,8 @@ class PageForm extends Component
                 duration: 3000,
                 stopOnFocus: true, // Prevents dismissing of toast on hover
                 style: {
-                    background: "#0891b2",
+                    background: "var(--brand-color)",
+                    color: "var(--brand-contrast-color)",
                     borderRadius: "0.75rem",
                     fontWeight: 500,
                     fontSize: "16px",

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use App\Models\Page;
+use App\Models\Site;
 use Livewire\Volt\Component;
 
 new #[Layout('layouts.guest')] class extends Component
@@ -33,14 +34,35 @@ new #[Layout('layouts.guest')] class extends Component
 
         Auth::login($user);
 
+        $id = generateID();
+
+        $site = Site::where('unique_id', $id)
+            ->first();
+
+        if($site) {
+            while($site) {
+                $id = generateID();
+                $site = Site::where('unique_id', $id)
+                    ->first();
+
+                if(! $site) {
+                    break;
+                }
+            }
+        }
+
+        $site = new Site;
+        $site->user_id = $user->id;
+        $site->unique_id = $id;
+        $site->settings = [];
+        $site->save();
+
         $page = new Page;
-        $page->user_id = $user->id;
-        $page->random_id = generatePageID();
+        $page->site_id = $site->id;
         $page->title = 'Home';
         $page->slug = 'home';
         $page->content = [["data" => ["level" => "h1", "content" => "Home", "alignment" => "center"],"type" => "heading"]];
         $page->status = 'draft';
-
         $page->save();
 
         $this->redirect(url('/builder'));

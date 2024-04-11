@@ -181,7 +181,7 @@ class PageResource extends Resource
                                                 return "View page here after it's created";
                                             }
 
-                                            $url = route('page', [$state['random_id'], $state['slug']]);
+                                            $url = route('page', [$state['site_id'], $state['slug']]);
                                             // $url = url('/') . '/builder/submissions?tableSearch=' . $formId;
                                             return new HtmlString('<a href="'.$url.'" target="_blank">View Page <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="inline w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg></a>');
                                         }),
@@ -231,7 +231,7 @@ class PageResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Action::make('View')
-                    ->url(fn (Page $record): string => route('page', [$record['random_id'], $record['slug']]))
+                    ->url(fn (Page $record): string => route('page', [$record['site_id'], $record['slug']]))
                     ->openUrlInNewTab()
                     ->icon('heroicon-o-arrow-top-right-on-square')
             ])
@@ -268,7 +268,9 @@ class PageResource extends Resource
 
     public static function getEloquentQuery(): LaravelBuilder
     {
-        return parent::getEloquentQuery()->where('user_id', auth()->user()->id);
+        $user = auth()->user();
+        $site = $user->site;
+        return parent::getEloquentQuery()->where('site_id', $site->id);
     }
 
     public static function canAccess(): bool

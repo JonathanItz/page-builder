@@ -57,7 +57,14 @@ class User extends Authenticatable implements FilamentUser
         return true;
     }
 
+    public function site() {
+        return $this->hasOne(Site::class);
+    }
+
+    // TODO
+    // if we want to add multiple sites for users
+    // we'll need to change '->first()'
     public function pages() {
-        return $this->hasMany(Page::class);
+        return $this->site()->first()->pages();
     }
 }

@@ -21,4 +21,6 @@ export default {
         forms,
         require('@tailwindcss/typography'),
     ],
+
+    darkMode: 'selector',
 };

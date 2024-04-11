@@ -106,6 +106,8 @@ class SubmissionsResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->where('page_owner_id', auth()->user()->id);
+        $user = auth()->user();
+        $site = $user->site;
+        return parent::getEloquentQuery()->where('site_id', $site->id);
     }
 }
