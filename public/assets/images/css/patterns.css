@@ -10,6 +10,5 @@
     /* background-color: #ffffff; */
     background-image:  radial-gradient(var(--brand-color) 0.8px, transparent 0.8px), radial-gradient(var(--brand-color) 0.8px, #ffffff00 0.8px);
     background-size: 48px 48px;
-    background-position: center;
     background-position: 0 0,24px 24px;
 }
