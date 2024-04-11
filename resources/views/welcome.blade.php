@@ -176,7 +176,26 @@
               </div>
             </div>
           </div>
-          
+
+
+        
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="gap-8 max-w-full grid md:grid-cols-2">
+                <div class="mx-auto lg:mx-0">
+                    {{-- <h2 class="text-base font-semibold leading-7 text-cyan-600">Pick your own design</h2> --}}
+                    <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Section Reordering</p>
+                    <p class="mt-6 text-lg leading-8 text-gray-600">
+                        Tailor each page to fit your requirements. Choose from up to four different section types and rearrange them effortlessly to create the ideal layout. Easily incorporate forms for interaction or showcase your content beautifully.
+                    </p>
+                </div>
+
+                <div class="relative">
+                    <img
+                    src="{{asset('/assets/images/homepage/featured-2.png')}}"
+                    alt="Product screenshot" class="rounded-3xl w-full max-w-full bg-gray-800 ring-1 ring-white/10 shadow-xl">
+                </div>
+            </div>
+        </div>
         
 
         <div class="bg-white py-24 sm:py-32" id="prices">
