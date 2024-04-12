@@ -20,6 +20,7 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use App\Filament\Website\Widgets\DashboardSubscriptionStatus;
+use Filament\Pages\Auth\EmailVerification\EmailVerificationPrompt;
 
 class WebsitePanelProvider extends PanelProvider
 {
@@ -39,7 +40,7 @@ class WebsitePanelProvider extends PanelProvider
             // ->login()
             // ->registration()
             // ->passwordReset()
-            // ->emailVerification()
+            ->emailVerification(EmailVerificationPrompt::class)
             ->navigationItems([
                 // NavigationItem::make('Page Settings')
                 //     ->url(url('/builder/pages/settings'))
