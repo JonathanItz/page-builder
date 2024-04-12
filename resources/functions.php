@@ -6,11 +6,11 @@ use App\Models\Page;
 |--------------------------------------------------------
 | Generate ID
 |--------------------------------------------------------
-| Generates a random ID for a page model
+| Generates a random ID for a site model
 |
 */
 function generateID() {
-    return substr(strrev(microtime(true) * 10000), 0, 5);
+    return substr(strrev(microtime(true) * 10000), 0, 6);
 }
 
 /*

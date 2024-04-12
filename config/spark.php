@@ -146,13 +146,14 @@ return [
             'plans' => [
                 [
                     'name' => 'Standard',
-                    'short_description' => 'This is a short, human friendly description of the plan.',
+                    'short_description' => 'Build dynamic pages to display exactly what you want. Highlight your brand, set up waitlist pages, or design forms to gather leads effortlessly.',
                     'monthly_id' => env('STANDARD_PRICE'),
                     // 'yearly_id' => 'price_id',
                     'features' => [
-                        'Feature 1',
-                        'Feature 2',
-                        'Feature 3',
+                        'Create up to five pages for your website',
+                        'Reorderable page sections',
+                        'Dynamic forms',
+                        'Custom design to match your brand',
                     ],
                 ],
             ],

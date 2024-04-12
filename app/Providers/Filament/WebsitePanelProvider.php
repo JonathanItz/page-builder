@@ -32,7 +32,7 @@ class WebsitePanelProvider extends PanelProvider
             ->brandName(function() {
                 return new HtmlString('
                     <div class="flex gap-3 items-center">
-                        <img class="w-8 h-8 inline" src="'.asset('assets/images/logo.svg').'" /> Igloo Pages
+                        <img class="w-8 h-8 inline" src="'.asset('assets/images/logo-cyan.svg').'" /> Igloo Pages
                     </div>
                 ');
             })

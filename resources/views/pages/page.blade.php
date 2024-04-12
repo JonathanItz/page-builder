@@ -1,3 +1,13 @@
+@php
+    $showNav = (
+            (isset($settings['showNav']) && $settings['showNav'] !== false)
+            ||
+            ! isset($settings['showNav'])
+        )
+        &&
+        ! $allPages->isEmpty() && $allPages->count() > 1;
+@endphp
+
 @push('header-scripts')
     <style>
         :root {
@@ -16,15 +26,7 @@ backgroundColor="bg-white"
 theme="{{isset($settings['theme']) ?$settings['theme']:''}}"
 pattern="{{isset($settings['backgroundPattern']) ?$settings['backgroundPattern']:''}}"
 >
-    @if (
-        (
-            (isset($settings['showNav']) && $settings['showNav'] !== false)
-            ||
-            ! isset($settings['showNav'])
-        )
-        &&
-        ! $allPages->isEmpty() && $allPages->count() > 1
-    )
+    @if ($showNav)
         <nav x-data="{ open: false }" class="px-6 pt-4 lg:px-8">
             <div class="space-x-2 font-medium mx-auto max-w-2xl hidden md:block">
                 @foreach ($allPages as $nav)
@@ -80,7 +82,7 @@ pattern="{{isset($settings['backgroundPattern']) ?$settings['backgroundPattern']
         </nav>
     @endif
 
-    <div class="py-16 md:py-24 px-6 lg:px-8 min-h-screen">
+    <div class="py-16 md:py-24 px-6 lg:px-8 {{$showNav ?'min-h-[calc(100vh-40px)]':'min-h-screen'}}">
         <div class="mx-auto max-w-2xl text-base leading-7 text-gray-700 dark:text-white prose">
             @if ($page['content'])
                 @foreach ($page['content'] as $content)

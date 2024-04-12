@@ -11,8 +11,8 @@ class PagesController extends Controller
 {
     public function show($unique_id, $slug) {
         $site = Site::where('unique_id', $unique_id)
-        ->with(['user', 'pages'])
-        ?->first();
+            ->with(['user', 'pages'])
+            ?->first();
 
         if(! hasAccess($site->user)) {
             return abort(404);
@@ -21,7 +21,7 @@ class PagesController extends Controller
         $pages = $site
         ?->pages()
         ?->where('status', 'published')
-        ?->orderBy('sort', 'desc')
+        ?->orderBy('sort', 'asc')
         ?->get();
 
         $page = $pages
