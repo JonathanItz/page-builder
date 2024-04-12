@@ -6,6 +6,10 @@
     margin-top: 1rem;
 }
 
+.dark .prose :where(a):not(:where([class~=not-prose],[class~=not-prose] *)) {
+    color: #fff;
+}
+
 .bg-brand-color {
     background-color: var(--brand-color);
     color: var(--brand-contrast-color);
